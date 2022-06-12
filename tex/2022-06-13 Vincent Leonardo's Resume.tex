@@ -1,0 +1,311 @@
+\documentclass[9pt, a4paper]{article}
+
+\usepackage{geometry}
+\geometry{a4paper, margin=0.5in, top=0.5in}
+\usepackage{wallpaper}
+\usepackage{hyperref}
+\usepackage{paracol}
+\hypersetup{colorlinks=true,urlcolor=rebeccapurple}
+
+% Do not indent paragraphs
+\setlength\parindent{0in}
+
+% \pagenumbering{gobble} does not work in this case.
+% Likely due to the code for the lines needing page reference numbers.
+% We use fancyhdr to modify it instead.
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt} % Prevent top line from appearing
+% \rfoot{Page \thepage \hspace{1pt} of \pageref{LastPage}} % Format of the page numbers
+\rfoot{} % Format of the page numbers
+
+\usepackage{multicol}
+% \usepackage{ragged2e}
+
+
+
+% TYPOGRAPHY
+%--------------------------------
+\usepackage{fontspec} 
+\usepackage{fontawesome5}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+% converts LaTeX specials (quotes, dashes etc.) to Unicode
+\defaultfontfeatures{LetterSpace=-4}
+%\defaultfontfeatures{Mapping=tex-text}
+\setmainfont[BoldFont={Inter Semi Bold}]{Inter}
+\setmonofont{JetBrains Mono}
+% Cool ampersand
+\newcommand{\amper}{{\fontspec[Scale=.95]{Inter}\selectfont\itshape\&}}
+\usepackage{setspace}
+\usepackage[inline]{enumitem}
+
+\newcommand{\middot}{~\textperiodcentered~}
+
+\setlist[itemize]{leftmargin=*} % removes margin from the itemize
+
+\newlist{skills}{itemize*}{1}
+\setlist[skills]{label={}, afterlabel={}, mode=unboxed,
+itemjoin=\discretionary{}{}{\hbox{\middot}}}
+
+\usepackage{lipsum,xcolor}
+\newcommand\dunderline[3][-1pt]{{%
+\sbox0{#3}%
+\ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}}
+
+% LANGUAGE
+%--------------------------------
+% Set the main language for formatting purposes, just in case.
+\usepackage{polyglossia}
+\setmainlanguage{en-GB}
+
+
+% LINES BETWEEN ITEMS
+%--------------------------------
+\usepackage{tikz,tikzpagenodes}
+\usetikzlibrary{calc}
+\usepackage{refcount}
+
+\newcounter{mylist} % new counter for amount of lists
+\newcounter{mycnt}[mylist] % create new item counter
+\newcounter{mytmp}[mylist] % tmp counter needed for checking before/after current item
+
+\newcommand{\drawoptionsconn}{black, shorten <= .5mm, shorten >= .5mm, thick}
+\newcommand{\drawoptionsshort}{black, shorten <= .5mm, shorten >= -1mm, thick}
+
+\newcommand{\myitem}{% Modified `\item` to update counter and save nodes
+	\stepcounter{mycnt}%
+	\item[\linkedlist{%
+		i\alph{mylist}\arabic{mycnt}}]%
+	\label{item-\alph{mylist}\arabic{mycnt}}%
+	\ifnum\value{mycnt}>1%
+	\ifnum\getpagerefnumber{item-\alph{mylist}\arabic{mytmp}}<\getpagerefnumber{item-\alph{mylist}\arabic{mycnt}}%
+	\begin{tikzpicture}[remember picture,overlay]%
+		\expandafter\draw\expandafter[\drawoptionsshort] (i\alph{mylist}\arabic{mycnt}) --
+		++(0,3mm) --
+		(i\alph{mylist}\arabic{mycnt} |- current page text area.north);% draw short line
+	\end{tikzpicture}%
+	\else%
+	\begin{tikzpicture}[remember picture,overlay]%
+		\expandafter\draw\expandafter[\drawoptionsconn] (i\alph{mylist}\arabic{mytmp}) -- (i\alph{mylist}\arabic{mycnt});% draw the connecting lines
+	\end{tikzpicture}%
+	\fi%
+	\fi%
+	\addtocounter{mytmp}{2}%
+	\IfRefUndefinedExpandable{item-\alph{mylist}\arabic{mytmp}}{}{% defined
+		\ifnum\getpagerefnumber{item-\alph{mylist}\arabic{mytmp}}>\getpagerefnumber{item-\alph{mylist}\arabic{mycnt}}%
+		\begin{tikzpicture}[remember picture,overlay]%
+			\expandafter\draw\expandafter[\drawoptionsshort] (i\alph{mylist}\arabic{mycnt}) --
+			++(0,-3mm) --
+			(i\alph{mylist}\arabic{mycnt} |- current page text area.south);% draw short line
+		\end{tikzpicture}%
+		\fi%
+	}%
+	\addtocounter{mytmp}{-1}%
+}
+
+\newcommand{\linkedlist}[1]{
+	\raisebox{1.5pt}[0pt][0pt]{\begin{tikzpicture}[remember picture]%
+			\node (#1) [black,circle,fill,inner sep=1.5pt]{};
+	\end{tikzpicture}}%
+}
+
+\newenvironment{myitemize}{%
+	% Create new `myitemize` environment to keep track of the counters
+	\stepcounter{mylist}% increment list counter
+	\begin{itemize}
+	}{\end{itemize}%
+}
+
+\newcommand{\heading}[1]{{\defaultfontfeatures{LetterSpace=0} \setmainfont{Inter} \textcolor{black} {\dunderline[-2.5pt]{1.5pt}{\small \textbf{#1}}}}}
+\newcommand{\itemheading}[1]{{\defaultfontfeatures{LetterSpace=-2} \small \textbf{#1}}}
+\newcommand{\subheading}[1]{{\defaultfontfeatures{LetterSpace=-2} \small \textbf{#1}}}
+\newcommand{\monthyear}[1]{{\defaultfontfeatures{LetterSpace=-2} \small \textbf{#1}}}
+\newcommand{\motto}[1]{{\defaultfontfeatures{LetterSpace=-3} \footnotesize #1}}
+
+\definecolor{rebeccapurple}{rgb}{0.4,0.2,0.6}
+\definecolor{sapphireblue}{rgb}{0.0,0.4,0.65}
+\definecolor{slategray}{rgb}{0.44,0.5,0.56}
+
+\begin{document}
+	\begin{center}
+		{\defaultfontfeatures{LetterSpace=0} \setmainfont{Inter} \textcolor{black} {\bfseries \large Vincent
+Leonardo}}\\
+
+		\motto{Aspiring AI engineer and front end developer}\smallbreak
+
+		{\defaultfontfeatures{LetterSpace=0} \footnotesize \href{mailto:vincent@vinleonardo.com}{\textcolor{black}{\faEnvelope\ vincent@vinleonardo.com}} | \faPhone\ +65
+8817 0611
+		
+		\href{https://www.linkedin.com/in/vincentleoooo/}{\textcolor{black}{\faLinkedin\ vincentleoooo}} | \href{https://vinleonardo.com}{\textcolor{black}{\faGlobe\ vinleonardo.com}} | \href{https://github.com/vincentleooo/}{\textcolor{black}{\faGithub\ vincentleooo}}\par}
+	\end{center}
+	\columnratio{0.82}
+		\small
+	
+		\heading{ABOUT}
+	\medbreak
+	{A keen and passionate multidisciplinary learner obsessed with anything
+technology related. Currently seeking a career in building web
+interfaces and ML/DL models to make the world a better place. Particular
+in crafting tools and interfaces to allow for easier usage of prediction
+models and data visualisation. Enjoys collaborative work and creative
+problem-solving.}
+	\smallbreak
+	\smallbreak
+		
+		\heading{EDUCATION}
+	\smallbreak
+
+		\begin{paracol}{2}\itemheading{Singapore University of Technology and
+Design}\\\subheading{Bachelor of Engineering with Honours (Engineering
+Systems and Design)}\switchcolumn{\monthyear{Singapore}\\\monthyear{May
+2019 -- Present}}\end{paracol}
+	\begin{itemize}[itemsep=-0.3ex, topsep=0ex]
+				\item {Expected to graduate in September 2022.}
+				\item {Awarded with the SUTD Undergraduate Merit Scholarship.}
+			\end{itemize}
+	\smallbreak
+	
+	\smallbreak
+		
+		\heading{EXPERIENCE}
+	\smallbreak
+		\begin{paracol}{2}\itemheading{What Is Up,
+Indonesia?}\ \href{https://github.com/what-is-up-indonesia/wiui-website}{\faGithub}\ \href{https://whatisupindonesia.com}{\faGlobe}\\\subheading{Newsletter
+Writer \& Web
+Developer}\switchcolumn{\monthyear{Singapore}\\\monthyear{May 2022 --
+Present}}\end{paracol}
+	\begin{itemize}[itemsep=-0.3ex, topsep=0ex]
+				\item {Writing weekly email newsletters discussing Indonesian news
+headlines in English that reaches over 500 people.}
+				\item {Writing and maintaining their website using Next.js (React)
+with MDX templates.}
+				\item {Exploring content management systems to implement on the
+website complementing the main
+\href{https://www.instagram.com/whatisupindonesia/}{Instagram\hspace{0.1em}{\tiny\faExternalLink*}}
+page.}
+			\end{itemize}
+	\smallbreak
+		\begin{paracol}{2}\itemheading{Silver Online
+Service}\ \href{https://github.com/vincentleooo/silver-online-society-website}{\faGithub}\ \href{https://silveronlinesociety.netlify.app}{\faGlobe}\\\subheading{Marketing
+Coordinator \& Web
+Developer}\switchcolumn{\monthyear{Singapore}\\\monthyear{May 2022 --
+Present}}\end{paracol}
+	\begin{itemize}[itemsep=-0.3ex, topsep=0ex]
+				\item {Developing a landing page website to increase reach towards
+children of elderly parents who are struggling with smartphone usage.}
+				\item {Advising for the creation of the startup company's brand
+identity and design for Instagram posts and the website.}
+			\end{itemize}
+	\smallbreak
+		\begin{paracol}{2}\itemheading{Shopee Pte
+Ltd}\ \ \\\subheading{Regional Operations (Fraud)
+Intern}\switchcolumn{\monthyear{Singapore}\\\monthyear{May 2021 -- Sep
+2021}}\end{paracol}
+	\begin{itemize}[itemsep=-0.3ex, topsep=0ex]
+				\item {Wrangled and examined large user behavioural datasets using
+the Apache Hive ecosystem, Python, and SQL.}
+				\item {Ideated rules that reduce instances of fraud, tested and
+analysed impact thereof with three other departments.}
+			\end{itemize}
+	\smallbreak
+	
+	\smallbreak
+		
+		\heading{PROJECTS \& COMPETITIONS}
+	\smallbreak
+		\begin{paracol}{2}\itemheading{Gait Recognition Model and
+Analytics}  \\\subheading{Klass Engineering Pte
+Ltd}\switchcolumn{\monthyear{Singapore}\\\monthyear{Jan 2022 --
+Present}}\end{paracol}
+	\begin{itemize}[itemsep=-0.3ex, topsep=0ex]
+				\item {Leading a team of five from two different pillars to model
+unique identification of people based on their gait alone.}
+				\item {Synthesising a full-stack pipeline from video feed to
+classification using React, FastAPI, OpenCV, and OpenGait models.}
+			\end{itemize}
+	\smallbreak
+		\begin{paracol}{2}\itemheading{Music Genre
+Classification} \href{https://github.com/nugglet/Music-Genre-Classification}{\faGithub} \\\subheading{SUTD
+50.039 Theory and Application of Deep
+Learning}\switchcolumn{\monthyear{Singapore}\\\monthyear{Jan 2022 -- May
+2022}}\end{paracol}
+	\begin{itemize}[itemsep=-0.3ex, topsep=0ex]
+				\item {Crafted a lightweight parallel CNN model to classify music
+genres using the GTZAN dataset to achieve around 80\% accuracy.}
+				\item {Split inputs into three-second chunks, and ensembling
+predictions based on these chunks for unseen data of any length.}
+				\item {Created a simple CLI application and a
+\href{https://github.com/vincentleooo/react-fastapi}{prototype web interface\hspace{0.1em}{\tiny\faExternalLink*}}
+for ease-of-use.}
+			\end{itemize}
+	\smallbreak
+		\begin{paracol}{2}\itemheading{Agent-Based Modelling for Airport
+Arrivals in a Post-Pandemic
+World} \href{https://github.com/vincentleooo/sma-airport-model}{\faGithub} \href{https://github.vinleonardo.com/sma-airport-model/}{\faGlobe}\\\subheading{SUTD
+40.015 Simulations Modelling
+Analysis}\switchcolumn{\monthyear{Singapore}\\\monthyear{Oct 2021 -- Dec
+2021}}\end{paracol}
+	\begin{itemize}[itemsep=-0.3ex, topsep=0ex]
+				\item {Project was highlighted for the course in the
+\href{https://esd.sutd.edu.sg/files/ESD-Spring-Newsletter-2022.pdf}{ESD pillar newsletter\hspace{0.1em}{\tiny\faExternalLink*}}
+in early 2022.}
+				\item {Managed the team of three in designing the architecture and
+user experience of the simulation using d3.js.}
+			\end{itemize}
+	\smallbreak
+		\begin{paracol}{2}\itemheading{Synthesis Sustainability IRL Data
+Challenge} \href{https://github.com/vincentleooo/synthesis-sustainability-2021}{\faGithub} \href{https://vinleonardo.com/synthesis-sustainable-competition-2021/}{\faGlobe}\\\subheading{Synthesis
+\& Treatsure}\switchcolumn{\monthyear{Singapore}\\\monthyear{Oct 2021 --
+Nov 2021}}\end{paracol}
+	\begin{itemize}[itemsep=-0.3ex, topsep=0ex]
+				\item {Directed the team of three to win
+\href{https://www.linkedin.com/feed/update/urn:li:activity:6872448218022727680/}{third place\hspace{0.1em}{\tiny\faExternalLink*}}
+in the data science challenge among around 135 participants.}
+				\item {Modelled word associations and sentiments on food surplus
+consumption from Twitter and Instagram posts in the past five years to
+consult Treatsure on persuading more people to consume surplus food.}
+			\end{itemize}
+	\smallbreak
+	
+	\smallbreak
+	
+		\heading{CO-CURRICULAR ACTIVITIES}
+	\smallbreak
+		\begin{paracol}{2}\itemheading{60.002 AI Applications in
+Design}  \\\subheading{Teaching
+Assistant}\switchcolumn{\monthyear{Singapore}\\\monthyear{Jan 2022 --
+May 2022}}\end{paracol}
+	\begin{itemize}[itemsep=-0.3ex, topsep=0ex]
+				\item {Mentored groups in their projects involving web scraping and
+text analysis using various Python packages.}
+				\item {Taught Python and TensorFlow installation, usage, and
+debugging skills.}
+			\end{itemize}
+	\smallbreak
+		\begin{paracol}{2}\itemheading{SUTD 9th Student
+Government}  \\\subheading{Advisor, Media \&
+Marketing}\switchcolumn{\monthyear{Singapore}\\\monthyear{Nov 2020 --
+Feb 2022}}\end{paracol}
+	\begin{itemize}[itemsep=-0.3ex, topsep=0ex]
+				\item {Advised and assisted the Media \& Marketing team of seven on
+student engagement projects in the university.}
+				\item {Co-led the Mental Health Awareness Week initiative, reaching
+over 1000 people through videos and Telegram Stickers.}
+			\end{itemize}
+	\smallbreak
+		
+	\smallbreak
+
+		\smallbreak
+		\heading{ADDITIONAL INFORMATION}
+	\begin{itemize}[itemsep=-0.3ex, topsep=0.7ex]
+				\item {Native English and Bahasa Indonesia speaker.}
+				\item {Comfortable in Linux/Unix-based systems and shell scripting,
+especially in web servers and for deep learning purposes.}
+				\item {Enjoys history, linguistics, music, and tinkering with
+technology to automate various things, including this résumé.}
+			\end{itemize}
+	\end{document}

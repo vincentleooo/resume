@@ -1,0 +1,244 @@
+\documentclass[$fontsize$, a4paper]{article}
+
+\usepackage{geometry}
+\geometry{$geometry$}
+\usepackage{wallpaper}
+\usepackage{hyperref}
+\usepackage{paracol}
+\hypersetup{colorlinks=true,urlcolor=rebeccapurple}
+
+% Do not indent paragraphs
+\setlength\parindent{0in}
+
+% \pagenumbering{gobble} does not work in this case.
+% Likely due to the code for the lines needing page reference numbers.
+% We use fancyhdr to modify it instead.
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt} % Prevent top line from appearing
+% \rfoot{Page \thepage \hspace{1pt} of \pageref{LastPage}} % Format of the page numbers
+\rfoot{} % Format of the page numbers
+
+\usepackage{multicol}
+% \usepackage{ragged2e}
+
+
+
+% TYPOGRAPHY
+%--------------------------------
+\usepackage{fontspec} 
+\usepackage{fontawesome5}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+% converts LaTeX specials (quotes, dashes etc.) to Unicode
+$if(reducetracking)$
+\defaultfontfeatures{LetterSpace=-4}
+$endif$
+%\defaultfontfeatures{Mapping=tex-text}
+\setmainfont[BoldFont={$boldfont$}]{$mainfont$}
+\setmonofont{JetBrains Mono}
+% Cool ampersand
+\newcommand{\amper}{{\fontspec[Scale=.95]{$mainfont$}\selectfont\itshape\&}}
+\usepackage{setspace}
+\usepackage[inline]{enumitem}
+
+\newcommand{\middot}{~\textperiodcentered~}
+
+\setlist[itemize]{leftmargin=*} % removes margin from the itemize
+
+\newlist{skills}{itemize*}{1}
+\setlist[skills]{label={}, afterlabel={}, mode=unboxed,
+itemjoin=\discretionary{}{}{\hbox{\middot}}}
+
+\usepackage{lipsum,xcolor}
+\newcommand\dunderline[3][-1pt]{{%
+\sbox0{#3}%
+\ooalign{\copy0\cr\rule[\dimexpr#1-#2\relax]{\wd0}{#2}}}}
+
+% LANGUAGE
+%--------------------------------
+% Set the main language for formatting purposes, just in case.
+$if(lang)$
+\usepackage{polyglossia}
+\setmainlanguage{$lang$}
+$endif$
+
+
+% LINES BETWEEN ITEMS
+%--------------------------------
+\usepackage{tikz,tikzpagenodes}
+\usetikzlibrary{calc}
+\usepackage{refcount}
+
+\newcounter{mylist} % new counter for amount of lists
+\newcounter{mycnt}[mylist] % create new item counter
+\newcounter{mytmp}[mylist] % tmp counter needed for checking before/after current item
+
+\newcommand{\drawoptionsconn}{black, shorten <= .5mm, shorten >= .5mm, thick}
+\newcommand{\drawoptionsshort}{black, shorten <= .5mm, shorten >= -1mm, thick}
+
+\newcommand{\myitem}{% Modified `\item` to update counter and save nodes
+	\stepcounter{mycnt}%
+	\item[\linkedlist{%
+		i\alph{mylist}\arabic{mycnt}}]%
+	\label{item-\alph{mylist}\arabic{mycnt}}%
+	\ifnum\value{mycnt}>1%
+	\ifnum\getpagerefnumber{item-\alph{mylist}\arabic{mytmp}}<\getpagerefnumber{item-\alph{mylist}\arabic{mycnt}}%
+	\begin{tikzpicture}[remember picture,overlay]%
+		\expandafter\draw\expandafter[\drawoptionsshort] (i\alph{mylist}\arabic{mycnt}) --
+		++(0,3mm) --
+		(i\alph{mylist}\arabic{mycnt} |- current page text area.north);% draw short line
+	\end{tikzpicture}%
+	\else%
+	\begin{tikzpicture}[remember picture,overlay]%
+		\expandafter\draw\expandafter[\drawoptionsconn] (i\alph{mylist}\arabic{mytmp}) -- (i\alph{mylist}\arabic{mycnt});% draw the connecting lines
+	\end{tikzpicture}%
+	\fi%
+	\fi%
+	\addtocounter{mytmp}{2}%
+	\IfRefUndefinedExpandable{item-\alph{mylist}\arabic{mytmp}}{}{% defined
+		\ifnum\getpagerefnumber{item-\alph{mylist}\arabic{mytmp}}>\getpagerefnumber{item-\alph{mylist}\arabic{mycnt}}%
+		\begin{tikzpicture}[remember picture,overlay]%
+			\expandafter\draw\expandafter[\drawoptionsshort] (i\alph{mylist}\arabic{mycnt}) --
+			++(0,-3mm) --
+			(i\alph{mylist}\arabic{mycnt} |- current page text area.south);% draw short line
+		\end{tikzpicture}%
+		\fi%
+	}%
+	\addtocounter{mytmp}{-1}%
+}
+
+\newcommand{\linkedlist}[1]{
+	\raisebox{1.5pt}[0pt][0pt]{\begin{tikzpicture}[remember picture]%
+			\node (#1) [black,circle,fill,inner sep=1.5pt]{};
+	\end{tikzpicture}}%
+}
+
+\newenvironment{myitemize}{%
+	% Create new `myitemize` environment to keep track of the counters
+	\stepcounter{mylist}% increment list counter
+	\begin{itemize}
+	}{\end{itemize}%
+}
+
+\newcommand{\heading}[1]{{\defaultfontfeatures{LetterSpace=0} \setmainfont{$mainfont$} \textcolor{black} {\dunderline[-2.5pt]{1.5pt}{\small \textbf{#1}}}}}
+\newcommand{\itemheading}[1]{{\defaultfontfeatures{LetterSpace=-2} \small \textbf{#1}}}
+\newcommand{\subheading}[1]{{\defaultfontfeatures{LetterSpace=-2} \small \textbf{#1}}}
+\newcommand{\monthyear}[1]{{\defaultfontfeatures{LetterSpace=-2} \small \textbf{#1}}}
+\newcommand{\motto}[1]{{\defaultfontfeatures{LetterSpace=-3} \footnotesize #1}}
+
+\definecolor{rebeccapurple}{rgb}{0.4,0.2,0.6}
+\definecolor{sapphireblue}{rgb}{0.0,0.4,0.65}
+\definecolor{slategray}{rgb}{0.44,0.5,0.56}
+
+\begin{document}
+	\begin{center}
+		{\defaultfontfeatures{LetterSpace=0} \setmainfont{$mainfont$} \textcolor{black} {\bfseries \large $name$}}\\
+
+		\motto{$motto$}\smallbreak
+
+		{\defaultfontfeatures{LetterSpace=0} \footnotesize \href{mailto:$email$}{\textcolor{black}{\faEnvelope\ $email$}} | \faPhone\ $phone$
+		
+		\href{https://www.linkedin.com/in/$linkedin$/}{\textcolor{black}{\faLinkedin\ $linkedin$}} | \href{https://$website$}{\textcolor{black}{\faGlobe\ $website$}} | \href{https://github.com/$github$/}{\textcolor{black}{\faGithub\ $github$}}\par}
+	\end{center}
+	\columnratio{$columnratio$}
+	$if(small)$
+	\small
+	$endif$
+
+	$if(about)$
+	\heading{ABOUT}
+	\medbreak
+	{$about$}
+	\smallbreak
+	\smallbreak
+	$endif$
+	
+	$if(education)$
+	\heading{EDUCATION}
+	\smallbreak
+
+	$for(education)$
+	\begin{paracol}{2}\itemheading{$education.institute$}\\\subheading{$education.degree$}\switchcolumn{\monthyear{Singapore}\\\monthyear{$education.year$}}\end{paracol}
+	\begin{itemize}[itemsep=-0.3ex, topsep=0ex]
+		$for(education.description)$
+		\item {$education.description$}
+		$endfor$
+	\end{itemize}
+	\smallbreak
+	$endfor$
+
+	\smallbreak
+	$endif$
+	
+	$if(experience)$
+	\heading{EXPERIENCE}
+	\smallbreak
+	$for(experience)$
+	\begin{paracol}{2}\itemheading{$experience.company$}\ $if(experience.github)$\href{$experience.github$}{\faGithub}$endif$\ $if(experience.website)$\href{$experience.website$}{\faGlobe}$endif$\\\subheading{$experience.position$}\switchcolumn{\monthyear{Singapore}\\\monthyear{$experience.year$}}\end{paracol}
+	\begin{itemize}[itemsep=-0.3ex, topsep=0ex]
+		$for(experience.description)$
+		\item {$experience.description$}
+		$endfor$
+	\end{itemize}
+	\smallbreak
+	$endfor$
+
+	\smallbreak
+	$endif$
+	
+	$if(projects)$
+	\heading{PROJECTS \& COMPETITIONS}
+	\smallbreak
+	$for(projects)$
+	\begin{paracol}{2}\itemheading{$projects.name$} $if(projects.github)$\href{$projects.github$}{\faGithub}$endif$ $if(projects.website)$\href{$projects.website$}{\faGlobe}$endif$\\\subheading{$projects.company$}\switchcolumn{\monthyear{Singapore}\\\monthyear{$projects.year$}}\end{paracol}
+	\begin{itemize}[itemsep=-0.3ex, topsep=0ex]
+		$for(projects.description)$
+		\item {$projects.description$}
+		$endfor$
+	\end{itemize}
+	\smallbreak
+	$endfor$
+
+	\smallbreak
+	$endif$
+
+	$if(cca)$
+	\heading{CO-CURRICULAR ACTIVITIES}
+	\smallbreak
+	$for(cca)$
+	\begin{paracol}{2}\itemheading{$cca.name$} $if(cca.github)$\href{$cca.github$}{\faGithub}$endif$ $if(cca.website)$\href{$cca.website$}{\faGlobe}$endif$\\\subheading{$cca.position$}\switchcolumn{\monthyear{Singapore}\\\monthyear{$cca.year$}}\end{paracol}
+	\begin{itemize}[itemsep=-0.3ex, topsep=0ex]
+		$for(cca.description)$
+		\item {$cca.description$}
+		$endfor$
+	\end{itemize}
+	\smallbreak
+	$endfor$
+	$endif$
+
+	\smallbreak
+
+	$if(skills)$
+		\heading{SKILLS \& TOOLS}
+		\smallbreak
+		\vspace*{0.2ex}
+		\begin{skills}
+			$for(skills)$
+			\item {$skills$}
+			$endfor$
+		\end{skills}
+		\smallbreak
+	$endif$
+	\smallbreak
+	$if(others)$
+	\heading{ADDITIONAL INFORMATION}
+	\begin{itemize}[itemsep=-0.3ex, topsep=0.7ex]
+		$for(others)$
+		\item {$others$}
+		$endfor$
+	\end{itemize}
+	$endif$
+\end{document}

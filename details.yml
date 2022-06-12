@@ -1,0 +1,182 @@
+---
+name: Vincent Leonardo
+phone: +65 8817 0611
+email: vincent@vinleonardo.com
+website: vinleonardo.com
+github: vincentleooo
+linkedin: vincentleoooo
+mainfont: Inter
+boldfont: Inter Semi Bold
+reducetracking: true
+small: true
+fontsize: 9pt
+lang: en-GB
+geometry: a4paper, margin=0.5in, top=0.5in
+columnratio: 0.82
+
+motto: Aspiring AI engineer and front end developer
+
+about: A keen and passionate multidisciplinary learner obsessed with anything technology related. Currently seeking a career in building web interfaces and ML/DL models to make the world a better place. Particular in crafting tools and interfaces to allow for easier usage of prediction models and data visualisation. Enjoys collaborative work and creative problem-solving.
+
+education:
+  - year: May 2019 -- Present
+    institute: Singapore University of Technology and Design
+    degree: Bachelor of Engineering with Honours (Engineering Systems and Design)
+    description:
+      - Expected to graduate in September 2022.
+      - Awarded with the SUTD Undergraduate Merit Scholarship.
+  # - year: FEB 2017 to December 2018
+  #   institute: ANGLO-CHINESE JUNIOR COLLEGE
+  #   degree: GCE Advanced Level
+  #   description:
+  #     - Obtained two distinctions.
+  #     - ASEAN Scholarship holder.
+  # - year: January 2015 to December 2016
+  #   institute: ANGLO-CHINESE SCHOOL (INDEPENDENT)
+  #   degree: GCE Ordinary Level
+  #   description:
+  #     - Obtained nine distinctions.
+  #     - ASEAN Scholarship holder.
+
+experience:
+  - year: May 2022 -- Present
+    company: What Is Up, Indonesia?
+    position: Newsletter Writer \& Web Developer
+    github: https://github.com/what-is-up-indonesia/wiui-website
+    website: https://whatisupindonesia.com
+    description: 
+      - Writing weekly email newsletters discussing Indonesian news headlines in English that reaches over 500 people.
+      - Writing and maintaining their website using Next.js (React) with MDX templates.
+      - Exploring content management systems to implement on the website complementing the main \href{https://www.instagram.com/whatisupindonesia/}{Instagram\hspace{0.1em}{\tiny\faExternalLink*}} page.
+  - year: May 2022 -- Present
+    company: Silver Online Service
+    position: Marketing Coordinator \& Web Developer
+    github: https://github.com/vincentleooo/silver-online-society-website
+    website: https://silveronlinesociety.netlify.app
+    description:
+      - Developing a landing page website to increase reach towards children of elderly parents who are struggling with smartphone usage.
+      - Advising for the creation of the startup company's brand identity and design for Instagram posts and the website.
+  - year: May 2021 -- Sep 2021
+    company: Shopee Pte Ltd
+    position: Regional Operations (Fraud) Intern
+    description:
+      - Wrangled and examined large user behavioural datasets using the Apache Hive ecosystem, Python, and SQL.
+      - Ideated rules that reduce instances of fraud, tested and analysed impact thereof with three other departments.
+  # - year: May 2020 to Sep 2020
+  #   company: SUTD DMAND CENTRE
+  #   position: Composites Research Intern
+  #   description:
+  #     - Optimised composites manufacturing processes and writing ANSYS scripts to automate software simulations, laying the groundwork for future projects.
+  #     - Led and collaborated with 3 researchers and 2 other interns in various ad-hoc projects related to the research.
+  #     - Led equipment purchasing decisions using technical expertise and knowledge, saving about 30-40% of the research’s budget.
+
+projects:
+  - year: Jan 2022 -- Present
+    name: Gait Recognition Model and Analytics
+    company: Klass Engineering Pte Ltd
+    description:
+      - Leading a team of five from two different pillars to model unique identification of people based on their gait alone.
+      - Synthesising a full-stack pipeline from video feed to classification using React, FastAPI, OpenCV, and OpenGait models.
+  - year: Jan 2022 -- May 2022
+    name: Music Genre Classification
+    company: SUTD 50.039 Theory and Application of Deep Learning
+    github: https://github.com/nugglet/Music-Genre-Classification
+    description:
+      - Crafted a lightweight parallel CNN model to classify music genres using the GTZAN dataset to achieve around 80\% accuracy.
+      - Split inputs into three-second chunks, and ensembling predictions based on these chunks for unseen data of any length.
+      - Created a simple CLI application and a \href{https://github.com/vincentleooo/react-fastapi}{prototype web interface\hspace{0.1em}{\tiny\faExternalLink*}} for ease-of-use.
+  # - year: Nov 2021 -- Dec 2021
+  #   name: \href{https://github.com/vincentleooo/analytics-edge-data-comp}{The Analytics Edge Data Competition}
+  #   company: Singapore University of Technology and Design
+  #   description:
+  #     - Headed the team of two to clinch first place in terms of accuracy amongst the cohort.
+  #     - Applied the RoBERTa model in TensorFlow in R to secure around 96% accuracy in the sentiment classification task.
+  # - year: Oct 2021 -- Dec 2021
+  #   name: \href{https://github.com/vincentleooo/CDS-Project-2021}{Classification of MBTI Type Based on Past Posts on Internet Forums}
+  #   company: Singapore University of Technology and Design
+  #   description:
+  #     - Devised model to predict the MBTI of the PersonalityCafe forum users based on their posts within the team of three.
+  #     - Merged a CNN with an LSTM using PyTorch after experimentations involving SVM, logistic regression, decision trees, ensemble models, and neural networks in order to achieve an accuracy of 78% for the top six classes.
+  - year: Oct 2021 -- Dec 2021
+    name: Agent-Based Modelling for Airport Arrivals in a Post-Pandemic World
+    company: SUTD 40.015 Simulations Modelling Analysis
+    github: https://github.com/vincentleooo/sma-airport-model
+    website: https://github.vinleonardo.com/sma-airport-model/
+    description:
+      - Project was highlighted for the course in the \href{https://esd.sutd.edu.sg/files/ESD-Spring-Newsletter-2022.pdf}{ESD pillar newsletter\hspace{0.1em}{\tiny\faExternalLink*}} in early 2022.
+      - Managed the team of three in designing the architecture and user experience of the simulation using d3.js.
+  - year: Oct 2021 -- Nov 2021
+    name: Synthesis Sustainability IRL Data Challenge
+    company: Synthesis & Treatsure
+    github: https://github.com/vincentleooo/synthesis-sustainability-2021
+    website: https://vinleonardo.com/synthesis-sustainable-competition-2021/
+    description:
+      - Directed the team of three to win \href{https://www.linkedin.com/feed/update/urn:li:activity:6872448218022727680/}{third place\hspace{0.1em}{\tiny\faExternalLink*}} in the data science challenge among around 135 participants.
+      - Modelled word associations and sentiments on food surplus consumption from Twitter and Instagram posts in the past five years to consult Treatsure on persuading more people to consume surplus food.
+  # - year: Mar 2021 -- May 2021
+  #   name: "Count On It: A Financial Literacy Game"
+  #   company: SUTD
+  #   description:
+  #     - Web app deliverable for the Engineering Systems Architecture course.
+  #     - Led the technical plannings for the game architecture and the coding process.
+  # - year: Mar 2021 -- May 2021
+  #   name: Optimisation of Pre-Surgery Assessment Appointment Slots
+  #   company: Singapore General Hospital Pre-Admission Centre
+  #   description:
+  #     - Partnered with client to gather and clean the appointment data over the past three years to form statistical inferences in R.
+  #     - Collaborated with team of four to implement the M/M/s on Excel to optimise manpower, queue time, and working hours.
+  # - year: Sep 2020 to December 2020
+  #   name: Analysis of Carsharing Usage Pattern and Utilisation
+  #   company: Car Club Pte Ltd
+  #   description:
+  #     - Led a team to analyse the effects of COVID-19 on carsharing usage using various tools such as R, SQL, Python and GIS.
+  #     - Wrote Python scripts to automate the sifting and analysis of four months of customer data provided in Excel format.
+  #     - Consulted the industry partner (Car Club) on possible measures on adapting to the new behaviours found due to COVID-19.
+  
+cca:
+  - year: Jan 2022 -- May 2022
+    position: Teaching Assistant
+    name: 60.002 AI Applications in Design
+    description:
+      - Mentored groups in their projects involving web scraping and text analysis using various Python packages.
+      - Taught Python and TensorFlow installation, usage, and debugging skills.
+  # - year: Feb 2021 -- Feb 2022
+  #   position: Chief Photographer
+  #   name: SUTD Photographic Circle
+  #   description:
+  #     - Oversaw the standards of the photographs sent to the clients over five major events.
+  #     - Spearheaded a film development workshop that was fully booked within one hour.
+  - year: Nov 2020 -- Feb 2022
+    position: Advisor, Media & Marketing
+    name: SUTD 9th Student Government
+    description:
+      - Advised and assisted the Media & Marketing team of seven on student engagement projects in the university.
+      - Co-led the Mental Health Awareness Week initiative, reaching over 1000 people through videos and Telegram Stickers.
+
+
+# skills:
+#   - Data Wrangling #Viz too?
+#   - Visualisation
+#   - Statistics
+#   - Machine Learning
+#   - Neural Networks
+#   - Optimisation
+#   - Simulations
+#   - Research\hfill
+#   - Python
+#   - R
+#   - JavaScript
+#   - SQL
+#   - Julia
+#   - Tableau
+#   - \LaTeX
+#   - Adobe Suite
+#   - Fusion 360
+#   - English (native)
+#   - Bahasa Indonesia (native)
+
+others:
+  - Native English and Bahasa Indonesia speaker.
+  - Comfortable in Linux/Unix-based systems and shell scripting, especially in web servers and for deep learning purposes.
+  - Enjoys history, linguistics, music, and tinkering with technology to automate various things, including this résumé.
+---
