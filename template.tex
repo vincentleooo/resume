@@ -158,7 +158,7 @@ $endif$
 	
 	$if(education)$
 	\heading{EDUCATION}
-	\smallbreak
+	\medbreak
 
 	$for(education)$
 	\begin{paracol}{2}\itemheading{$education.institute$}\\\subheading{$education.degree$}\switchcolumn{\monthyear{Singapore}\\\monthyear{$education.year$}}\end{paracol}
@@ -175,9 +175,9 @@ $endif$
 	
 	$if(experience)$
 	\heading{EXPERIENCE}
-	\smallbreak
+	\medbreak
 	$for(experience)$
-	\begin{paracol}{2}\itemheading{$experience.company$}\ $if(experience.github)$\href{$experience.github$}{\faGithub}$endif$\ $if(experience.website)$\href{$experience.website$}{\faGlobe}$endif$\\\subheading{$experience.position$}\switchcolumn{\monthyear{Singapore}\\\monthyear{$experience.year$}}\end{paracol}
+	\begin{paracol}{2}\itemheading{$experience.company$}\ {\footnotesize$if(experience.github)$\href{$experience.github$}{\faGithub}$endif$\ $if(experience.website)$\href{$experience.website$}{\faGlobe}$endif$}\\\subheading{$experience.position$}\switchcolumn{\monthyear{Singapore}\\\monthyear{$experience.year$}}\end{paracol}
 	\begin{itemize}[itemsep=-0.3ex, topsep=0ex]
 		$for(experience.description)$
 		\item {$experience.description$}
@@ -191,9 +191,9 @@ $endif$
 	
 	$if(projects)$
 	\heading{PROJECTS \& COMPETITIONS}
-	\smallbreak
+	\medbreak
 	$for(projects)$
-	\begin{paracol}{2}\itemheading{$projects.name$} $if(projects.github)$\href{$projects.github$}{\faGithub}$endif$ $if(projects.website)$\href{$projects.website$}{\faGlobe}$endif$\\\subheading{$projects.company$}\switchcolumn{\monthyear{Singapore}\\\monthyear{$projects.year$}}\end{paracol}
+	\begin{paracol}{2}\itemheading{$projects.name$} {\footnotesize$if(projects.github)$\href{$projects.github$}{\faGithub}$endif$ $if(projects.website)$\href{$projects.website$}{\faGlobe}$endif$}\\\subheading{$projects.company$}\switchcolumn{\monthyear{Singapore}\\\monthyear{$projects.year$}}\end{paracol}
 	\begin{itemize}[itemsep=-0.3ex, topsep=0ex]
 		$for(projects.description)$
 		\item {$projects.description$}
@@ -207,9 +207,9 @@ $endif$
 
 	$if(cca)$
 	\heading{CO-CURRICULAR ACTIVITIES}
-	\smallbreak
+	\medbreak
 	$for(cca)$
-	\begin{paracol}{2}\itemheading{$cca.name$} $if(cca.github)$\href{$cca.github$}{\faGithub}$endif$ $if(cca.website)$\href{$cca.website$}{\faGlobe}$endif$\\\subheading{$cca.position$}\switchcolumn{\monthyear{Singapore}\\\monthyear{$cca.year$}}\end{paracol}
+	\begin{paracol}{2}\itemheading{$cca.name$} {\footnotesize$if(cca.github)$\href{$cca.github$}{\faGithub}$endif$ $if(cca.website)$\href{$cca.website$}{\faGlobe}$endif$}\\\subheading{$cca.position$}\switchcolumn{\monthyear{Singapore}\\\monthyear{$cca.year$}}\end{paracol}
 	\begin{itemize}[itemsep=-0.3ex, topsep=0ex]
 		$for(cca.description)$
 		\item {$cca.description$}
@@ -235,7 +235,8 @@ $endif$
 	\smallbreak
 	$if(others)$
 	\heading{ADDITIONAL INFORMATION}
-	\begin{itemize}[itemsep=-0.3ex, topsep=0.7ex]
+	\medbreak
+	\begin{itemize}[itemsep=-0.3ex, topsep=0ex]
 		$for(others)$
 		\item {$others$}
 		$endfor$
