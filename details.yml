@@ -51,10 +51,10 @@ experience:
   - year: May 2022 -- Present
     company: Silver Online Service
     position: Marketing Coordinator \& Web Developer
-    github: https://github.com/vincentleooo/silver-online-society-website
-    website: https://silveronlinesociety.netlify.app
+    github: https://github.com/vincentleooo/silver-online-service-website
+    # website: https://silveronlineservice.netlify.app
     description:
-      - Developing a landing page website to increase reach towards children of elderly parents who are struggling with smartphone usage.
+      - Developing a website (in-progress) to increase reach towards children of elderly parents who are struggling with smartphone usage.
       - Advising for the creation of the startup company's brand identity and design for Instagram posts and the website.
   - year: May 2021 -- Sep 2021
     company: Shopee Pte Ltd
@@ -178,5 +178,5 @@ cca:
 others:
   - Native English and Bahasa Indonesia speaker.
   - Comfortable in Linux/Unix-based systems and shell scripting, especially in web servers and for deep learning purposes.
-  - Enjoys history, linguistics, music, and tinkering with technology to automate various things, including this résumé.
+  - Enjoys history, linguistics, music, and tinkering with technology to automate various things, including \href{https://github.com/vincentleooo/resume}{this résumé\hspace{0.1em}{\tiny\faExternalLink*}}.
 ---
